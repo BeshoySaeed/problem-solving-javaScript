@@ -1,8 +1,7 @@
 var createCounter = function (n) {
   let counter = n;
 
-  function increment() {
+  return function () {
     return counter++;
-  }
-  return increment;
+  };
 };
