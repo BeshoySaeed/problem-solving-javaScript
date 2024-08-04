@@ -8,3 +8,5 @@ function isPowerOfTwo(n) {
 
   return n === 1;
 }
+
+// we can also do it with recursive.
