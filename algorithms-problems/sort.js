@@ -66,3 +66,41 @@ function insertionSor(arr) {
 }
 
 // console.log(insertionSor([34, 22, 10, 19, 17]));
+// merge sort
+
+function merge(arr1, arr2) {
+  let firstFor = 0;
+  let secondFor = 0;
+  let result = [];
+  while (firstFor < arr1.length && secondFor < arr2.length) {
+    if (arr1[firstFor] < arr2[secondFor]) {
+      result.push(arr1[firstFor]);
+      firstFor++;
+    } else {
+      result.push(arr2[secondFor]);
+      secondFor++;
+    }
+  }
+  if (firstFor < arr1.length) {
+    result = result.concat(arr1.slice(firstFor));
+  }
+  if (secondFor < arr2.length) {
+    result = result.concat(arr2.slice(secondFor));
+  }
+  return result;
+}
+
+// console.log(merge([1, 10, 50], [2, 14, 99, 100]));
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+console.log(
+  Array.from({ length: 1000000 }, () => Math.floor(Math.random() * 1000000)),
+  mergeSort(Array.from({ length: 1000000 }, () => Math.random() * 1000000))
+);
