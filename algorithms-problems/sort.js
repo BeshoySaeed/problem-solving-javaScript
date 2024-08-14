@@ -1,7 +1,7 @@
 let arr = [9, 7, 2, 6, 4];
 let arrStr = ["steele", "Colt", "Data Structure", "Algorithms"];
 
-// bubble sort
+// bubble sort BIG O (n ** 2)
 
 Array.prototype.bubbleNumber = function () {
   let array = this;
@@ -23,7 +23,7 @@ Array.prototype.bubbleNumber = function () {
 
 // console.log(arr.bubbleNumber());
 
-// Selection
+// Selection BIG O (n ** 2)
 
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
@@ -39,7 +39,7 @@ function selectionSort(arr) {
 
 // console.log(selectionSort([34, 22, 10, 19, 17]));
 
-// Insertion sort
+// Insertion sort BIG O (n ** 2)
 
 // function insertionSor(arr) {
 //   for (let i = 1; i < arr.length; i++) {
@@ -66,7 +66,7 @@ function insertionSor(arr) {
 }
 
 // console.log(insertionSor([34, 22, 10, 19, 17]));
-// merge sort
+// merge sort BIG O (n log n)
 
 function merge(arr1, arr2) {
   let firstFor = 0;
