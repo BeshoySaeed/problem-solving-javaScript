@@ -65,4 +65,4 @@ function insertionSor(arr) {
   return arr;
 }
 
-console.log(insertionSor([34, 22, 10, 19, 17]));
+// console.log(insertionSor([34, 22, 10, 19, 17]));
