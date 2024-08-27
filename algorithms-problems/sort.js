@@ -123,7 +123,7 @@ function helper(arr, start = 0, end = arr.length + 1) {
   return swapIndex;
 }
 
-console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]));
+// console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]));
 
 function quickSort(arr, left = 0, right = arr.length - 1) {
   if (left < right) {
@@ -136,3 +136,43 @@ function quickSort(arr, left = 0, right = arr.length - 1) {
 
   return arr;
 }
+
+// Radix sort
+// we just compare the numbers as a digits not compare it with another like all the previous sort
+
+function getDigit(num, i) {
+  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
+
+function digitCount(num) {
+  if (num === 0) return 1;
+  // return Math.floor(Math.log10(Math.abs(num))) + 1;
+  counter = 0;
+  while (num > 1) {
+    counter++;
+    num = num / 10;
+  }
+  return counter;
+}
+
+function mostDigit(nums) {
+  let max = 0;
+  for (let i = 0; i < nums.length; i++) {
+    max = Math.max(max, digitCount(nums[i]));
+  }
+  return max;
+}
+
+function radixSort(nums) {
+  let maxDigitCount = mostDigit(nums);
+  for (let k = 0; k < maxDigitCount; k++) {
+    let digitBuckets = Array.from({ length: 10 }, () => []);
+    for (let i = 0; i < nums.length; i++) {
+      let digit = getDigit(nums[i], k);
+      digitBuckets[digit].push(nums[i]);
+    }
+    nums = [].concat(...digitBuckets);
+  }
+  return nums;
+}
+console.log(radixSort([1, 5, 234, 535, 64765, 765868, 9]));
