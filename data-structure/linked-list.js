@@ -23,17 +23,59 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-
   pop() {
-    
+    if (!this.head) return undefined; // List is empty
+
+    let current = this.head;
+    let prev = null;
+
+    while (current.next) {
+      prev = current;
+      current = current.next;
+    }
+
+    if (!prev) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = prev;
+      this.tail.next = null;
+    }
+
+    this.length--;
+    return current;
+  }
+
+  shift() {
+    if (!this.head) return undefined;
+    let current = this.head;
+    this.head = current.next;
+    this.length--;
+    return current;
+  }
+
+  unshift(val) {
+    const node = new Node(val);
+    if (!this.head) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      node.next = this.head;
+      this.head = node;
+    }
+    this.length++;
+  }
+  size() {
+    return this.length;
   }
 }
 
 let list = new SinglyLinkedList();
-list.push("man");
-console.log(list.push("hi man"));
-console.log(list.push("hi y"));
-
+list.unshift("atFirst");
+list.unshift("atFirst0");
+// list.pop();
+// list.shift();
+console.log(list);
 // let first = new Node("hi");
 // first.next = new Node("there");
 // first.next.next = new Node("How");
