@@ -92,20 +92,43 @@ class DoublyLinkedList {
 
     return currentNode;
   }
+
+  set(index, val) {
+    if (!this.head) return undefined;
+    let newHead = new Node(val);
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length - 1) return !!this.push(val);
+    let foundNode = this.get(index);
+    foundNode.val = val;
+    return true;
+  }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    const newNode = new Node(val);
+    const prev = this.get(index - 1);
+    const next = prev.next;
+    prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = next;
+    next.prev = newNode;
+    this.length++;
+    return true;
+  }
+
+  remove(index) {
+    const currentNode = this.get(index);
+    if (!currentNode) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+    currentNode.prev.next = currentNode.next;
+    currentNode.next.prev = currentNode.prev;
+    currentNode.next = null;
+    currentNode.prev = null;
+    this.length--;
+    return currentNode;
+  }
 }
-
-const list = new DoublyLinkedList();
-
-list.push(1);
-list.push(1);
-list.push(1);
-list.push(1);
-list.push(1);
-list.push(1);
-list.push(1);
-list.push(1);
-
-list.push(2);
-
-console.log(list.length);
-console.log(list.get(8));
